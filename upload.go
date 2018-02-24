@@ -9,15 +9,13 @@ import (
 	"io"
 	"os"
 	"path/filepath"
-	"time"
 	"strconv"
+	"time"
 )
 
 const (
-	//LargeFileLimit = 4 * 1024 * 1024 * 1024 //4GB
-	//BufferSize     = 100 * 1024 * 1024      //100MB
-	LargeFileLimit = 1 * 1024 * 1024 //4GB
-	BufferSize     = 1 * 1024 * 1024      //100MB
+	LargeFileLimit = 4 * 1024 * 1024 * 1024 //4GB
+	BufferSize     = 100 * 1024 * 1024      //100MB
 )
 
 type UploadCommand struct {
@@ -167,7 +165,7 @@ func (c UploadCommand) uploadLarge() error {
 			break
 		}
 
-		if err != nil && err != io.ErrUnexpectedEOF  {
+		if err != nil && err != io.ErrUnexpectedEOF {
 			debugLog.Printf("err %+v\n", err)
 			return err
 		}
