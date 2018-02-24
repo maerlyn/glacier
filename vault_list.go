@@ -9,6 +9,8 @@ import (
 type VaultListCommand struct{}
 
 func (c VaultListCommand) Execute(args []string) error {
+	debugLog.Println("executing VaultListCommand")
+
 	output, err := glacierService.ListVaults(&glacier.ListVaultsInput{
 		AccountId: aws.String("-"),
 	})
@@ -16,6 +18,7 @@ func (c VaultListCommand) Execute(args []string) error {
 		return err
 	}
 
+	debugLog.Printf("ListVaults response is %+v\n", output)
 	fmt.Printf("Vaults:\n\n")
 
 	for _, v := range output.VaultList {
